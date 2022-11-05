@@ -1,0 +1,126 @@
+<div class="row">
+    <!-- Datatables -->
+    <div class="col-lg-12">
+      <div class="card mb-4">
+        <div class="card-header bg-primary py-3 d-flex flex-row align-items-center justify-content-between">
+          <a href="/Transaksi" class="btn btn-primary"><span class="fa fa-arrow-left"></span> Kembali</a>
+          <a href="<?= base_url('/Transaksi/cetak_invoice/'.$tampil['id_invoice']) ?>" class="btn btn-primary"><span class="fa fa-print"> Cetak</span></a>
+        </div>
+        <?= session('pesan')  ?>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header bg-primary text-white">
+                  <h3><span class="fa fa-archive"></span> Detail Invoice</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table">
+                    <tr>
+                      <td>Invoice</td>
+                      <td>:</td>
+                      <td><?= $tampil['id_invoice']  ?></td>
+                    </tr>
+                    <tr>
+                      <td>Nama_lengkap</td>
+                      <td>:</td>
+                      <td><?= $tampil['nama_pelanggan']  ?></td>
+                    </tr> 
+                    <tr>
+                      <td>Almat</td>
+                      <td>:</td>
+                      <td><?= $tampil['alamat_lengkap']  ?></td>
+                    </tr> 
+                    <tr>
+                      <td>Sub_Total</td>
+                      <td>:</td>
+                      <td><?= 'Rp. '.number_format($total['total'],0,',','.') ?></td>
+                    </tr>
+                    <tr>
+                      <td>Ongkir</td>
+                      <td>:</td>
+                      <td><?= 'Rp. '.number_format($tampil['tarif'],0,',','.')  ?></td>
+                    </tr>
+                    <tr>
+                      <td>Total harus dibayar</td>
+                      <td>:</td>
+                      <td><?= 'Rp. '.number_format($total['total']+$tampil['tarif'],0,',','.') ?></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+               <div class="card-header bg-primary text-white">
+                <h3><span class="fa fa-file"></span> Bukti Transfer </h3>
+              </div>
+              <div class="card-body">
+                <a href="<?= base_url('foto/pelanggan/bukti_transfer/'.$tampil['foto_bukti']) ?>">
+                  <img src="<?= base_url('foto/pelanggan/bukti_transfer/'.$tampil['foto_bukti']) ?>" alt="" class="card-img-top">
+                </a>
+              </div>
+              <?php if($tampil['status_invoice']=="sudah"){ ?>
+                <div class="card-footer bg-success">
+                  <h4 class="card-title text-white text-center"><span class="fa fa-check"></span> Berhasil Divalidasi</h4>
+                </div>
+              <?php }elseif($tampil['status_invoice']=="batal"){ ?>
+                <div class="card-footer bg-danger">
+                  <h4 class="card-title text-white text-center"><span class="fa fa-times"></span> Dibatalkan</h4>
+                </div>
+              <?php }else{ ?>
+                <div class="card-footer">
+                 <form action="/Transaksi/validasi" method="POST">
+                  <input type="hidden" name="id" value="<?= $tampil['id_invoice']  ?>">
+                  <button class="btn btn-success w-100 my-2"> <span class="fa fa-check"></span> Validasi</button>
+                </form>
+                <form action="/Transaksi/tolak" method="POST">
+                  <input type="hidden" name="id" value="<?= $tampil['id_invoice']  ?>">
+                  <button class="btn btn-danger w-100"> <span class="fa fa-times"></span>   Batal</button>
+                </form>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="col-md-12 mt-4">
+          <div class="card">
+           <div class="card-header bg-primary text-white">
+            <h3><span class="fas fa-tshirt"></span> Daftar Pesanan</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Foto</th>
+                      <th>Nama_baju</th>
+                      <th>Harga</th>
+                      <th>Jumlah</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php 
+                    $no=1;
+                    foreach ($list as $key): ?>
+                      <tr>
+                        <td><img style="height: 100px;width: 100px;" src="<?= base_url('foto/admin/baju/'.$key['foto']) ?>" alt="" class="img-thumbnail"></td>
+                        <td><?= $key['nama_baju'] ?></td>
+                        <td><?= 'Rp. '.number_format($key['harga_jual'],0,',','.') ?></td>
+                        <td><?= $key['jumlah'] ?></td>
+                        <td><?= 'Rp. '.number_format($key['total'],0,',','.') ?></td>
+                      </tr>
+                      <?php $no++; endforeach ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

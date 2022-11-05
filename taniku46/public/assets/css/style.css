@@ -1,0 +1,43 @@
+.gambar {
+  width: 50px;
+}
+.tengah {
+  text-align: center;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+.penomeran {
+  width: 20px;
+  text-align: center;
+}
+.aksi {
+  width: 110px;
+}
+.tdetail {
+  width: 100px;
+}
+.table > tbody > tr > #titik {
+  width: 20px;
+}
+.table > tbody > tr > #deskripsi {
+  text-align: justify;
+}
+.image {
+  border-radius: 15px;
+}
+.img-pelanggan {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.pfooter {
+  background-color: white;
+  border-radius: 15px;
+}
+#img-logo {
+  width: 77%;
+}
+.card-pelanggan {
+  border-radius: 15px;
+}
