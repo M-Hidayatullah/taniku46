@@ -9,5 +9,3 @@ Login Planggan
 
 Email : haikal@gmail.com
 Password : haikal
-
-By Haikal Wahyudi
