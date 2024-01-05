@@ -4,8 +4,3 @@ Login Admin
 
 Email : admin@gmail.com
 password : admin
-
-Login Planggan
-
-Email : haikal@gmail.com
-Password : haikal
